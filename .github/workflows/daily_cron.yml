@@ -10,4 +10,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Run daily script
-      run: sh ./script.sh
+      run: sh ./daily_script.sh
