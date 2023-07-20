@@ -1,0 +1,13 @@
+name: Daily Script
+
+on:
+  schedule:
+    - cron: '0 08,20 * * *'
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run daily script
+      run: sh ./script.sh
