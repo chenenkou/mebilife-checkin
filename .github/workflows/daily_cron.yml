@@ -10,4 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Run daily script
+      env:
+          COOKIE: ${{ secrets.COOKIE }}
       run: sh ./daily_script.sh
