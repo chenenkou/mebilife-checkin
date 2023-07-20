@@ -21,6 +21,7 @@ echo $response
 msg_data=$(echo "$response" | grep -Eo '"msg":"[^"]*"')
 text=$(echo "$msg_data" | grep -oE '"msg":"[^"]+"' | sed 's/"msg":"\([^"]*\)"/\1/g')
 text="mebilife-checkin: Msg: $text"
+text=${text//\"/}
 text="${text// /%20}"
 echo $text
 
