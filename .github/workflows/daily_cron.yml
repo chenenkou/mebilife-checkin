@@ -1,6 +1,8 @@
 name: Daily Script
 
 on:
+  push:
+  pull_request:
   schedule:
     - cron: '0 08,20 * * *'
 
