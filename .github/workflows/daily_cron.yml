@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: '0 08,20 * * *'
 
+# 设置时区
+env:
+  TZ: Asia/Shanghai
+
 jobs:
   run-script:
     runs-on: ubuntu-latest
@@ -12,4 +16,5 @@ jobs:
     - name: Run daily script
       env:
           COOKIE: ${{ secrets.COOKIE }}
+          PUSH_KEY: ${{ secrets.PUSH_KEY }}
       run: sh ./daily_script.sh
