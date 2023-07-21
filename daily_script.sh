@@ -18,11 +18,11 @@ header="$header""\n""User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)
 response=$(curl -X POST -H "$header" -b "$cookie" -d "$data" "$url")
 echo $response
 
-msg_data=$(echo "$response" | grep -Eo '"msg":"[^"]*"')
-text=$(echo "$msg_data" | grep -oE '"msg":"[^"]+"' | sed 's/"msg":"\([^"]*\)"/\1/g')
-text="Mebilife-checkin:%20Msg:%20$text"
-#text=${text//\"/}
-#text="${text// /%20}"
+text=$(echo "$response" | grep -Eo '"msg":"[^"]*"')
+#text=$(echo "$msg_data" | grep -oE '"msg":"[^"]+"' | sed 's/"msg":"\([^"]*\)"/\1/g')
+text=${text//\"/}
+text="${text// /%20}"
+text="$text%0A-%20Mebilife-checkin"
 echo $text
 
 url="https://api2.pushdeer.com/message/push?pushkey=${key}&text=${text}"
