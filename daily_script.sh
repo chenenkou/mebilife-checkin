@@ -16,7 +16,7 @@ header="$header""\n""User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)
 response=$(curl -X POST -H "$header" -b "$cookie" -d "$data" "$url")
 echo $response
 
-if [ -n "$variable" ]; then
+if [ -n "$response" ]; then
   echo "签到请求正常"
 else
   echo "签到请求异常"
