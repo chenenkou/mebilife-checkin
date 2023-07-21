@@ -19,10 +19,12 @@ response=$(curl -X POST -H "$header" -b "$cookie" -d "$data" "$url")
 echo $response
 
 text=$(echo "$response" | grep -Eo '"msg":"[^"]*"')
-#text=$(echo "$msg_data" | grep -oE '"msg":"[^"]+"' | sed 's/"msg":"\([^"]*\)"/\1/g')
-text=${text//\"/}
-text="${text// /%20}"
-text="$text%0A-%20Mebilife-checkin"
+text=$(echo "$text" | grep -oE '"msg":"[^"]+"' | sed 's/"msg":"\([^"]*\)"/\1/g')
+#text=${text//\"/}
+#text="${text// /%20}"
+text="$text - Mebilife-checkin"
+# 将字符串进行URL编码
+text=$(printf "%s" "$text" | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
 echo $text
 
 url="https://api2.pushdeer.com/message/push?pushkey=${key}&text=${text}"
