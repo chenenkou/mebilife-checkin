@@ -15,6 +15,8 @@ header="$header""\n""charset: UTF-8"
 header="$header""\n""User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.82"
 response=$(curl -X POST -H "$header" -b "$cookie" -d "$data" "$url")
 echo $response
+# 去除所有空格和换行符
+response="${response//[$'\t\r\n ']/}"
 
 if [ -n "$response" ]; then
   echo "签到请求正常"
