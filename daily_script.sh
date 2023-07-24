@@ -16,7 +16,10 @@ header="$header""\n""User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)
 response=$(curl -X POST -H "$header" -b "$cookie" -d "$data" "$url")
 echo $response
 # 去除所有空格和换行符
-response="${response//[$'\t\r\n ']/}"
+if echo "$response" | grep -q '[[:space:]]'; then
+  # 字符串中包含空格或换行符，进行处理
+  response="${response//[$'\t\r\n ']/}"
+fi
 
 if [ -n "$response" ]; then
   echo "签到请求正常"
