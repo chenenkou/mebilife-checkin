@@ -19,7 +19,8 @@ response='{"msg":"\u4f60\u83b7\u5f97\u4e86 113 MB\u6d41\u91cf","ret":1}'
 # 去除所有空格和换行符
 if echo "$response" | grep -q '[[:space:]]'; then
   # 字符串中包含空格或换行符，进行处理
-  response="${response//[$'\t\r\n ']/}"
+  # response="${response//[$'\t\r\n ']/}"
+  response=$(echo "$response" | sed -e 's/[[:space:]]//g')
 fi
 
 if [ -n "$response" ]; then
