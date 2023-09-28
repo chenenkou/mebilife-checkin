@@ -8,7 +8,7 @@ cookie="${COOKIE}"
 key="${PUSH_KEY}"
 
 # 发送签到请求
-url="https://high.scay.net/user/checkin"
+url="https://www.mebilife.com/user/checkin"
 data="{}"
 header="Content-Type: application/json"
 header="$header""\n""charset: UTF-8"
